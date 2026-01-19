@@ -274,12 +274,12 @@ function TaskFormModal({ isOpen, onClose, onSubmit, initialData, initialEditing 
         )}
 
         {isEditing ? (
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-3">
             <div className="flex flex-col gap-1.5">
               <label className="text-[10px] font-bold text-[#4e6a85] uppercase tracking-wider">Title</label>
               <input
                 autoFocus required
-                className="bg-[#0b1016] border border-[#233648] rounded-xl p-2.5 text-sm text-white focus:outline-none focus:border-primary transition-colors font-mono"
+                className="bg-[#0b1016] border border-[#233648] rounded-lg p-2 text-sm text-white focus:outline-none focus:border-primary transition-colors font-mono"
                 value={formData.title}
                 onChange={e => setFormData(f => ({ ...f, title: e.target.value }))}
                 placeholder="e.g. Implement OAuth2 flow..."
@@ -288,8 +288,8 @@ function TaskFormModal({ isOpen, onClose, onSubmit, initialData, initialEditing 
             <div className="flex flex-col gap-1.5">
               <label className="text-[10px] font-bold text-[#4e6a85] uppercase tracking-wider">Description (Optional)</label>
               <textarea
-                rows="4"
-                className="bg-[#0b1016] border border-[#233648] rounded-xl p-2.5 text-sm text-white focus:outline-none focus:border-primary transition-colors font-mono resize-none scrollbar-thin scrollbar-thumb-[#233648]"
+                rows="3"
+                className="bg-[#0b1016] border border-[#233648] rounded-lg p-2 text-sm text-white focus:outline-none focus:border-primary transition-colors font-mono resize-none scrollbar-thin scrollbar-thumb-[#233648]"
                 value={formData.description || ''}
                 onChange={e => setFormData(f => ({ ...f, description: e.target.value }))}
                 placeholder="Detailed technical specs or context..."
@@ -299,7 +299,7 @@ function TaskFormModal({ isOpen, onClose, onSubmit, initialData, initialEditing 
               <div className="flex flex-col gap-1.5">
                 <label className="text-[10px] font-bold text-[#4e6a85] uppercase tracking-wider">Priority</label>
                 <select
-                  className="bg-[#0b1016] border border-[#233648] rounded-xl p-2.5 text-sm text-white focus:outline-none focus:border-primary cursor-pointer appearance-none"
+                  className="bg-[#0b1016] border border-[#233648] rounded-lg p-2 text-sm text-white focus:outline-none focus:border-primary cursor-pointer appearance-none"
                   value={formData.priority}
                   onChange={e => setFormData(f => ({ ...f, priority: e.target.value }))}
                 >
@@ -312,7 +312,7 @@ function TaskFormModal({ isOpen, onClose, onSubmit, initialData, initialEditing 
               <div className="flex flex-col gap-1.5">
                 <label className="text-[10px] font-bold text-[#4e6a85] uppercase tracking-wider">Type</label>
                 <select
-                  className="bg-[#0b1016] border border-[#233648] rounded-xl p-2.5 text-sm text-white focus:outline-none focus:border-primary cursor-pointer appearance-none"
+                  className="bg-[#0b1016] border border-[#233648] rounded-lg p-2 text-sm text-white focus:outline-none focus:border-primary cursor-pointer appearance-none"
                   value={formData.tags[0]}
                   onChange={e => setFormData(f => ({ ...f, tags: [e.target.value] }))}
                 >
@@ -339,21 +339,21 @@ function TaskFormModal({ isOpen, onClose, onSubmit, initialData, initialEditing 
               />
             </div>
             <div className="pt-2 pb-1">
-              <button type="submit" className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-primary/20 font-mono">
+              <button type="submit" className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-2.5 rounded-lg transition-all shadow-lg shadow-primary/20 font-mono text-sm leading-none flex items-center justify-center h-10">
                 {initialData ? "SAVE_CHANGES" : "COMMIT_TASK"}
               </button>
             </div>
           </form>
         ) : (
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-1.5">
               <label className="text-[10px] font-bold text-[#4e6a85] uppercase tracking-wider">Title</label>
-              <h4 className="text-lg font-bold text-white leading-tight">{formData.title}</h4>
+              <h4 className="text-base font-bold text-white leading-tight">{formData.title}</h4>
             </div>
 
             <div className="flex flex-col gap-1.5">
               <label className="text-[10px] font-bold text-[#4e6a85] uppercase tracking-wider">Description</label>
-              <p className="text-sm text-[#92adc9] font-mono leading-relaxed bg-[#0b1016] p-4 rounded-xl border border-[#233648] whitespace-pre-wrap">
+              <p className="text-xs text-[#92adc9] font-mono leading-relaxed bg-[#0b1016] p-3 rounded-lg border border-[#233648] whitespace-pre-wrap">
                 {formData.description || 'No detailed description provided for this task.'}
               </p>
             </div>
