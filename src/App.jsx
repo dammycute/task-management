@@ -65,6 +65,7 @@ export default function App() {
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false)
   const [activeTask, setActiveTask] = useState(null)
   const [targetColumn, setTargetColumn] = useState(null)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   useEffect(() => {
     bcRef.current = new BroadcastChannel('task-channel')
@@ -186,14 +187,16 @@ export default function App() {
       <Sidebar
         projects={projects}
         activeId={currentProjectId}
-        onSwitch={setCurrentProjectId}
+        onSwitch={(id) => { setCurrentProjectId(id); setIsSidebarOpen(false); }}
         onCreateProject={createNewProject}
         onDeleteProject={deleteProject}
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
       />
       <main className="flex-1 flex flex-col min-w-0 overflow-hidden bg-background-dark">
-        <Header project={currentProject} onAddTask={() => openAddTask('todo')} />
+        <Header project={currentProject} onAddTask={() => openAddTask('todo')} onMenuClick={() => setIsSidebarOpen(true)} />
         <Filters filters={filters} setFilters={setFilters} columns={columns} />
-        <div className="flex-1 overflow-x-auto p-6 scrollbar-thin">
+        <div className="flex-1 overflow-x-auto p-4 md:p-6 scrollbar-thin">
           <Board
             columns={columns}
             setColumns={setColumns}
@@ -292,7 +295,7 @@ function TaskFormModal({ isOpen, onClose, onSubmit, initialData, initialEditing 
                 placeholder="Detailed technical specs or context..."
               />
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 xs:grid-cols-2 gap-3">
               <div className="flex flex-col gap-1.5">
                 <label className="text-[10px] font-bold text-[#4e6a85] uppercase tracking-wider">Priority</label>
                 <select
@@ -355,7 +358,7 @@ function TaskFormModal({ isOpen, onClose, onSubmit, initialData, initialEditing 
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 xs:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1.5">
                 <label className="text-[10px] font-bold text-[#4e6a85] uppercase tracking-wider">Metadata</label>
                 <div className="flex flex-col gap-2">

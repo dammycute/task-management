@@ -4,7 +4,7 @@ export default function Filters({ filters, setFilters }) {
   const hasFilters = filters.search || filters.assignee !== 'all' || filters.tag !== 'all' || filters.priority !== 'all'
 
   return (
-    <div className="flex items-center gap-3 p-4 px-6 overflow-x-auto border-b border-[#233648] bg-[#111a22]/30 shrink-0">
+    <div className="flex items-center gap-3 p-4 px-4 md:px-6 overflow-x-auto border-b border-[#233648] bg-[#111a22]/30 shrink-0">
       <div className="relative group shrink-0">
         <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
           <span className="material-symbols-outlined text-primary text-lg">search</span>
